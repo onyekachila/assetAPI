@@ -6,4 +6,43 @@ what we need to exist first are place above what will exist later.
 
 When you get error after running db:seed. Remember to always migrate:fresh your database to start from a clean state
 
+we use the api resource route by commenting out everything inside the api.php file and add
+Route::apiResource('/question', 'QuestionController');
+
+In the question controller remove the create and edit method
+
+CRUD for Q
+
+READ //  http://127.0.0.1:8000/api/question   -- get request to the url
+
+READ SINGLE // http://127.0.0.1:8000/api/question/{slug}   -- display a single Q
+
+CREATE // http://127.0.0.1:8000/api/question  
+
+-- post request. 
+
+fill in header section of postman key: accept value: application/json  
+-- on the next line content-type  value application/json
+
+-- on the body section go to x-www-form-urlencoded then fill out the properties of the model
+
+make sure the server is running then make your request.
+
+/**************************/
+
+We can also get the logged in user id from question while trying to save.
+This is possible because we have a relationship created between the user and question. 
+This can be donw with the following code
+
+//auth()->user()->question()->create($request->all()); 
+
+/**************************/
+
+php artisan make:resource QuestionResource
+
+this is an equivalent of view model or data tranfer object. 
+
+
+
+
 

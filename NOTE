@@ -42,6 +42,37 @@ php artisan make:resource QuestionResource
 
 this is an equivalent of view model or data tranfer object. 
 
+/**************************/
+
+To get replies for a particular question, 
+We do a model binding on the index method of the reply
+and use the relationship that exist between question and reply to get specific replies to a questions
+
+return $question->replies; 
+
+NB We just call the relationship without using it like a method.
+
+/**************************/
+
+For reply.show route // to display one particular reply.
+because of the way the route is structure we need to pass the Question as model binding to the show method
+
+
+public function show(Question $question, Reply $reply)
+{
+    return $reply;
+}
+
+api/question/{question}/reply/{reply}
+This is to enable us access this route for show. The route above.
+
+
+
+
+
+
+
+
 
 
 

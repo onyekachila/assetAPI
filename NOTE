@@ -1,3 +1,9 @@
 php artisan make:model Model/Quesntion -mfr  
 // this will create model in models folder, resource controller, factory, and migration
 
+After creating the database factories we need to call it in the database seeder in an order such that
+what we need to exist first are place above what will exist later.
+
+When you get error after running db:seed. Remember to always migrate:fresh your database to start from a clean state
+
+

@@ -66,6 +66,17 @@ public function show(Question $question, Reply $reply)
 api/question/{question}/reply/{reply}
 This is to enable us access this route for show. The route above.
 
+Working with jwt
+
+paste the code below in composer.json
+"tymon/jwt-auth": "^1.0.0-rc.4.1"  // or look for the latest version from github in the developer tab and click on branch to get the latest
+then composer update
+then 
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+to publish the config
+then generate secret key with the command below
+php artisan jwt:secret
+
 
 
 

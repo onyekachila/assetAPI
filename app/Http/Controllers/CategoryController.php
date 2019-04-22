@@ -10,6 +10,16 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -34,8 +44,7 @@ class CategoryController extends Controller
         $category->slug = str_slug($request->name);
         $category->save();
 
-        return response('Created', Response::HTTP_CREATED); 
-
+        return response('Created', Response::HTTP_CREATED);
     }
 
     /**
@@ -49,7 +58,7 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-      /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -58,15 +67,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // $category->update($request->all()); 
-        // return response('Updated', Response::HTTP_ACCEPTED); 
+        // $category->update($request->all());
+        // return response('Updated', Response::HTTP_ACCEPTED);
 
         $category->update([
             'name' => $request->name,
             'slug' => str_slug($request->name)
         ]);
         
-        return response('Updated', Response::HTTP_ACCEPTED); 
+        return response('Updated', Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -78,6 +87,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response(null, Response::HTTP_NO_CONTENT); 
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
